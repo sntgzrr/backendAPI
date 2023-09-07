@@ -2,7 +2,12 @@ package com.sntzr.controller;
 
 import com.sntzr.model.Product;
 import com.sntzr.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +20,7 @@ public class ProductController {
     private final ProductService service; //Inyección de dependencias.
 
 //Métodos HTTP.
+
     @GetMapping
     public List<Product> findAll(){
         return service.findAll();
@@ -26,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public int save(@RequestBody Product product){ //RequestBody permite enviar información del cuerpo del producto al servidor.
+    public int save(@Valid @RequestBody Product product, BindingResult bindingResult){ //RequestBody permite enviar información del cuerpo del producto al servidor.
         return service.save(product);
     }
 

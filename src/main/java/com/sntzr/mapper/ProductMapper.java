@@ -17,7 +17,7 @@ public interface ProductMapper {
     @Delete("DELETE FROM Product WHERE id = #{id}")
     int deleteById(@Param("id") int id); //Recibe un parámetro "id".
 
-    @Insert("INSERT INTO Product(id, name, status) VALUES (#{id}, #{name}, #{status})")
+    @Insert("INSERT INTO Product(name, status) VALUES (#{name}, #{status})")
     int save(Product item);
 
     @Update("UPDATE Product SET name=#{name}, status=#{status} WHERE id=#{id}")
